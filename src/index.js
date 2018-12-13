@@ -456,6 +456,7 @@ function createConfig(options, entry, format, writeMeta) {
 							ecma: 5,
 							toplevel: format === 'cjs' || format === 'es',
 							mangle: {
+								eval: true,
 								properties: mangleOptions
 									? {
 											regex: mangleOptions.regex
