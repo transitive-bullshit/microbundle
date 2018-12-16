@@ -448,13 +448,12 @@ function createConfig(options, entry, format, writeMeta) {
 						terser({
 							sourcemap: true,
 							output: { comments: false },
-							compress: {
+							compress: Object.assign({
 								passes: 10,
 								hoist_funs: true,
-								booleans_as_integers: true,
 								keep_infinity: true,
-								pure_getters: true
-							},
+								pure_getters: true,
+							}, mangleOptions && mangleOptions.compress || {}),
 							warnings: true,
 							ecma: 5,
 							module: format === 'es',
