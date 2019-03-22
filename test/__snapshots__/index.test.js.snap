@@ -737,21 +737,21 @@ default-named
 
 
 Build \\"defaultNamed\\" to dist:
-59 B: default-named.js.gz
-42 B: default-named.js.br
+60 B: default-named.js.gz
+46 B: default-named.js.br
 70 B: default-named.mjs.gz
 58 B: default-named.mjs.br
-169 B: default-named.umd.js.gz
-126 B: default-named.umd.js.br"
+170 B: default-named.umd.js.gz
+124 B: default-named.umd.js.br"
 `;
 
 exports[`fixtures default-named 2`] = `
-"exports.foo=42,exports.default=function(){};
+"exports.default=function(){},exports.foo=42;
 //# sourceMappingURL=default-named.js.map
 "
 `;
 
-exports[`fixtures default-named 3`] = `"{\\"version\\":3,\\"file\\":\\"default-named.js\\",\\"sources\\":[\\"../src/index.js\\"],\\"sourcesContent\\":[\\"export const foo = 42;\\\\nexport default function bar() {}\\\\n\\"],\\"names\\":[],\\"mappings\\":\\"YAAmB,mBACnB\\"}"`;
+exports[`fixtures default-named 3`] = `"{\\"version\\":3,\\"file\\":\\"default-named.js\\",\\"sources\\":[\\"../src/index.js\\"],\\"sourcesContent\\":[\\"export const foo = 42;\\\\nexport default function bar() {}\\\\n\\"],\\"names\\":[],\\"mappings\\":\\"gBACA,yBADmB\\"}"`;
 
 exports[`fixtures default-named 4`] = `
 "var t=42;export default function(){}export{t as foo};
@@ -762,12 +762,12 @@ exports[`fixtures default-named 4`] = `
 exports[`fixtures default-named 5`] = `"{\\"version\\":3,\\"file\\":\\"default-named.mjs\\",\\"sources\\":[\\"../src/index.js\\"],\\"sourcesContent\\":[\\"export const foo = 42;\\\\nexport default function bar() {}\\\\n\\"],\\"names\\":[\\"foo\\"],\\"mappings\\":\\"IAAaA,EAAM,kBACnB\\"}"`;
 
 exports[`fixtures default-named 6`] = `
-"!function(e,f){\\"object\\"==typeof exports&&\\"undefined\\"!=typeof module?f(exports):\\"function\\"==typeof define&&define.amd?define([\\"exports\\"],f):f((e=e||self).defaultNamed={})}(this,function(e){e.foo=42,e.default=function(){}});
+"!function(e,f){\\"object\\"==typeof exports&&\\"undefined\\"!=typeof module?f(exports):\\"function\\"==typeof define&&define.amd?define([\\"exports\\"],f):f((e=e||self).defaultNamed={})}(this,function(e){e.default=function(){},e.foo=42});
 //# sourceMappingURL=default-named.umd.js.map
 "
 `;
 
-exports[`fixtures default-named 7`] = `"{\\"version\\":3,\\"file\\":\\"default-named.umd.js\\",\\"sources\\":[\\"../src/index.js\\"],\\"sourcesContent\\":[\\"export const foo = 42;\\\\nexport default function bar() {}\\\\n\\"],\\"names\\":[],\\"mappings\\":\\"kMAAmB,aACJ\\"}"`;
+exports[`fixtures default-named 7`] = `"{\\"version\\":3,\\"file\\":\\"default-named.umd.js\\",\\"sources\\":[\\"../src/index.js\\"],\\"sourcesContent\\":[\\"export const foo = 42;\\\\nexport default function bar() {}\\\\n\\"],\\"names\\":[],\\"mappings\\":\\"sMACe,mBADI\\"}"`;
 
 exports[`fixtures define 1`] = `
 "Used script: microbundle --no-sourcemap --define DEBUG=false
@@ -788,8 +788,8 @@ Build \\"define\\" to dist:
 37 B: define.js.br
 55 B: define.mjs.gz
 37 B: define.mjs.br
-143 B: define.umd.js.gz
-105 B: define.umd.js.br"
+108 B: define.umd.js.gz
+78 B: define.umd.js.br"
 `;
 
 exports[`fixtures define 2`] = `
@@ -803,7 +803,7 @@ exports[`fixtures define 3`] = `
 `;
 
 exports[`fixtures define 4`] = `
-"!function(e){\\"function\\"==typeof define&&define.amd?define(e):e()}(function(){console.log(\\"debug mode\\",!0)});
+"!function(n){\\"function\\"==typeof define&&define.amd?define(n):n()}(function(){console.log(\\"production mode\\",!1)});
 "
 `;
 
