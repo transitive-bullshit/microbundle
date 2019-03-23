@@ -1243,16 +1243,16 @@ shebang
 
 
 Build \\"shebang\\" to dist:
-87 B: shebang.js.gz
-63 B: shebang.js.br
-71 B: shebang.mjs.gz
-49 B: shebang.mjs.br
-171 B: shebang.umd.js.gz
-129 B: shebang.umd.js.br"
+85 B: shebang.js.gz
+62 B: shebang.js.br
+89 B: shebang.mjs.gz
+70 B: shebang.mjs.br
+185 B: shebang.umd.js.gz
+146 B: shebang.umd.js.br"
 `;
 
 exports[`fixtures shebang 2`] = `
-"#!#!/usr/bin/env node
+"#!/usr/bin/env node
 exports.foo=function(){return\\"hello world\\"};
 //# sourceMappingURL=shebang.js.map
 "
@@ -1261,20 +1261,22 @@ exports.foo=function(){return\\"hello world\\"};
 exports[`fixtures shebang 3`] = `"{\\"version\\":3,\\"file\\":\\"shebang.js\\",\\"sources\\":[\\"../src/index.js\\"],\\"sourcesContent\\":[\\"#!/usr/bin/env node\\\\n\\\\nexport function foo() {\\\\n\\\\treturn 'hello world';\\\\n}\\\\n\\"],\\"names\\":[],\\"mappings\\":\\";YAEO,iBACC\\"}"`;
 
 exports[`fixtures shebang 4`] = `
-"function o(){return\\"hello world\\"}export{o as foo};
+"#!/usr/bin/env node
+function o(){return\\"hello world\\"}export{o as foo};
 //# sourceMappingURL=shebang.mjs.map
 "
 `;
 
-exports[`fixtures shebang 5`] = `"{\\"version\\":3,\\"file\\":\\"shebang.mjs\\",\\"sources\\":[\\"../src/index.js\\"],\\"sourcesContent\\":[\\"#!/usr/bin/env node\\\\n\\\\nexport function foo() {\\\\n\\\\treturn 'hello world';\\\\n}\\\\n\\"],\\"names\\":[\\"foo\\"],\\"mappings\\":\\"AAEO,SAASA,UACR\\"}"`;
+exports[`fixtures shebang 5`] = `"{\\"version\\":3,\\"file\\":\\"shebang.mjs\\",\\"sources\\":[\\"../src/index.js\\"],\\"sourcesContent\\":[\\"#!/usr/bin/env node\\\\n\\\\nexport function foo() {\\\\n\\\\treturn 'hello world';\\\\n}\\\\n\\"],\\"names\\":[\\"foo\\"],\\"mappings\\":\\";AAEO,SAASA,UACR\\"}"`;
 
 exports[`fixtures shebang 6`] = `
-"!function(e,o){\\"object\\"==typeof exports&&\\"undefined\\"!=typeof module?o(exports):\\"function\\"==typeof define&&define.amd?define([\\"exports\\"],o):o((e=e||self).shebang={})}(this,function(e){e.foo=function(){return\\"hello world\\"}});
+"#!/usr/bin/env node
+!function(e,o){\\"object\\"==typeof exports&&\\"undefined\\"!=typeof module?o(exports):\\"function\\"==typeof define&&define.amd?define([\\"exports\\"],o):o((e=e||self).shebang={})}(this,function(e){e.foo=function(){return\\"hello world\\"}});
 //# sourceMappingURL=shebang.umd.js.map
 "
 `;
 
-exports[`fixtures shebang 7`] = `"{\\"version\\":3,\\"file\\":\\"shebang.umd.js\\",\\"sources\\":[\\"../src/index.js\\"],\\"sourcesContent\\":[\\"#!/usr/bin/env node\\\\n\\\\nexport function foo() {\\\\n\\\\treturn 'hello world';\\\\n}\\\\n\\"],\\"names\\":[],\\"mappings\\":\\"6LAEO,iBACC\\"}"`;
+exports[`fixtures shebang 7`] = `"{\\"version\\":3,\\"file\\":\\"shebang.umd.js\\",\\"sources\\":[\\"../src/index.js\\"],\\"sourcesContent\\":[\\"#!/usr/bin/env node\\\\n\\\\nexport function foo() {\\\\n\\\\treturn 'hello world';\\\\n}\\\\n\\"],\\"names\\":[],\\"mappings\\":\\";6LAEO,iBACC\\"}"`;
 
 exports[`fixtures ts-mixed-exports 1`] = `
 "Used script: microbundle
