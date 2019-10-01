@@ -1,10 +1,21 @@
+NOTE: this is a custom fork of [microbundle](https://github.com/developit/microbundle) for [Saasify](https://saasify.sh) which adds a few nice-to-have features:
+
+- `rollup-plugin-named-directory` - more convenient imports for react components
+- `rollup-plugin-smart-asset` - smart bundling of imported image assets
+- `@babel/plugin-proposal-decorators` - add support for legacy decorators - very convenient for [mobx](https://mobx.js.org)
+- custom `rollup-plugin-alias` entries - these are the only customization specific to [react-saasify](https://github.com/saasify-sh/saasify/tree/master/packages/react-saasify)
+
+---
+
 <p align="center">
   <img src="https://i.imgur.com/LMEgZMh.gif" width="597" alt="microbundle">
 </p>
+
 <h1 align="center">
 	Microbundle
 	<a href="https://www.npmjs.org/package/microbundle"><img src="https://img.shields.io/npm/v/microbundle.svg?style=flat" alt="npm"></a> <a href="https://travis-ci.org/developit/microbundle"><img src="https://travis-ci.org/developit/microbundle.svg?branch=master" alt="travis"></a>
 </h1>
+
 <p align="center">The <strong>zero-configuration</strong> bundler for <em>tiny modules</em>, powered by <a href="https://github.com/rollup/rollup">Rollup</a>.</p>
 
 ---

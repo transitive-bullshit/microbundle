@@ -13,11 +13,13 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import alias from 'rollup-plugin-alias';
 import postcss from 'rollup-plugin-postcss';
+import namedDirectory from 'rollup-plugin-named-directory';
 import gzipSize from 'gzip-size';
 import brotliSize from 'brotli-size';
 import prettyBytes from 'pretty-bytes';
 import typescript from 'rollup-plugin-typescript2';
 import json from 'rollup-plugin-json';
+import smartAsset from 'rollup-plugin-smart-asset';
 import logError from './log-error';
 import { readFile, isDir, isFile, stdout, stderr, isTruthy } from './utils';
 import camelCase from 'camelcase';
@@ -96,7 +98,18 @@ const parseMappingArgumentAlias = aliasStrings => {
 };
 
 // Extensions to use when resolving modules
-const EXTENSIONS = ['.ts', '.tsx', '.js', '.jsx', '.es6', '.es', '.mjs'];
+const EXTENSIONS = [
+	'.ts',
+	'.tsx',
+	'.js',
+	'.jsx',
+	'.es6',
+	'.es',
+	'.mjs',
+	'.jpg',
+	'.png',
+	'.svg',
+];
 
 const WATCH_OPTS = {
 	exclude: 'node_modules/**',
@@ -381,6 +394,21 @@ function createConfig(options, entry, format, writeMeta) {
 		? parseMappingArgumentAlias(options.alias)
 		: [];
 
+	moduleAliases.push({
+		find: /^assets\/(.*)$/,
+		replacement: `${resolve(options.cwd, 'src', 'assets')}/$1`,
+	});
+
+	moduleAliases.push({
+		find: /^lib\/(.*)$/,
+		replacement: `${resolve(options.cwd, 'src', 'lib')}/$1`,
+	});
+
+	moduleAliases.push({
+		find: /^store\/(.*)$/,
+		replacement: `${resolve(options.cwd, 'src', 'store')}/$1`,
+	});
+
 	const peerDeps = Object.keys(pkg.peerDependencies || {});
 	if (options.external === 'none') {
 		// bundle everything (external=[])
@@ -496,6 +524,7 @@ function createConfig(options, entry, format, writeMeta) {
 			},
 			plugins: []
 				.concat(
+					namedDirectory(),
 					postcss({
 						plugins: [
 							autoprefixer(),
@@ -522,6 +551,12 @@ function createConfig(options, entry, format, writeMeta) {
 						include: /\/node_modules\//,
 					}),
 					json(),
+					smartAsset({
+						url: 'copy',
+						useHash: true,
+						keepName: true,
+						keepImport: true,
+					}),
 					{
 						// We have to remove shebang so it doesn't end up in the middle of the code somewhere
 						transform: code => ({

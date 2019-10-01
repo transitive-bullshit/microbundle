@@ -77,6 +77,10 @@ export default babelPlugin.custom(babelCore => {
 						externalHelpers: true,
 					},
 					{
+						name: '@babel/plugin-proposal-decorators',
+						legacy: true,
+					},
+					{
 						name: '@babel/plugin-proposal-class-properties',
 						loose: true,
 					},
