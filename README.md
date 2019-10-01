@@ -1,4 +1,4 @@
-NOTE: this is a custom fork of [microbundle](https://github.com/developit/microbundle) for [Saasify](https://saasify.sh) which adds a few nice-to-have features:
+**NOTE** (Travis Fischer): this is a custom fork of [microbundle](https://github.com/developit/microbundle) for [Saasify](https://saasify.sh) which adds a few nice-to-have features:
 
 - `rollup-plugin-named-directory` - more convenient imports for react components
 - `rollup-plugin-smart-asset` - smart bundling of imported image assets
