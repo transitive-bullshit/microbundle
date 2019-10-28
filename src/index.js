@@ -19,7 +19,7 @@ import brotliSize from 'brotli-size';
 import prettyBytes from 'pretty-bytes';
 import typescript from 'rollup-plugin-typescript2';
 import json from 'rollup-plugin-json';
-import smartAsset from 'rollup-plugin-smart-asset';
+import smartAsset from 'rollup-plugin-smart-asset-transitive-bullshit';
 import logError from './log-error';
 import { readFile, isDir, isFile, stdout, stderr, isTruthy } from './utils';
 import camelCase from 'camelcase';
