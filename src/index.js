@@ -6,19 +6,19 @@ import glob from 'tiny-glob/sync';
 import autoprefixer from 'autoprefixer';
 import cssnano from 'cssnano';
 import { rollup, watch } from 'rollup';
-import commonjs from 'rollup-plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs';
 import babel from 'rollup-plugin-babel';
 import customBabel from './lib/babel-custom';
-import nodeResolve from 'rollup-plugin-node-resolve';
+import nodeResolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
-import alias from 'rollup-plugin-alias';
+import alias from '@rollup/plugin-alias';
 import postcss from 'rollup-plugin-postcss';
 import namedDirectory from 'rollup-plugin-named-directory';
 import gzipSize from 'gzip-size';
 import brotliSize from 'brotli-size';
 import prettyBytes from 'pretty-bytes';
 import typescript from 'rollup-plugin-typescript2';
-import json from 'rollup-plugin-json';
+import json from '@rollup/plugin-json';
 import smartAsset from 'rollup-plugin-smart-asset-transitive-bullshit';
 import logError from './log-error';
 import { readFile, isDir, isFile, stdout, stderr, isTruthy } from './utils';
@@ -371,13 +371,15 @@ async function getOutput({ cwd, output, pkgMain, pkgName }) {
 }
 
 async function getEntries({ input, cwd }) {
-	let entries = (await map([].concat(input), async file => {
-		file = resolve(cwd, file);
-		if (await isDir(file)) {
-			file = resolve(file, 'index.js');
-		}
-		return file;
-	})).filter((item, i, arr) => arr.indexOf(item) === i);
+	let entries = (
+		await map([].concat(input), async file => {
+			file = resolve(cwd, file);
+			if (await isDir(file)) {
+				file = resolve(file, 'index.js');
+			}
+			return file;
+		})
+	).filter((item, i, arr) => arr.indexOf(item) === i);
 	return entries;
 }
 
@@ -577,6 +579,7 @@ function createConfig(options, entry, format, writeMeta) {
 						typescript({
 							typescript: require('typescript'),
 							cacheRoot: `./node_modules/.cache/.rts2_cache_${format}`,
+							objectHashIgnoreUnknownHack: true,
 							tsconfigDefaults: {
 								compilerOptions: {
 									sourceMap: options.sourcemap,
