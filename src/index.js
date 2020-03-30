@@ -570,7 +570,7 @@ function createConfig(options, entry, format, writeMeta) {
 									sourceMap: options.sourcemap,
 									declaration: true,
 									jsx: 'react',
-									jsxFactory: options.jsx || 'h',
+									jsxFactory: options.jsx || 'React.createElement',
 								},
 							},
 							tsconfig: options.tsconfig,
