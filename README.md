@@ -1,9 +1,10 @@
-**NOTE** (Travis Fischer): this is a custom fork of [microbundle](https://github.com/developit/microbundle) for [Saasify](https://saasify.sh) which adds a few nice-to-have features:
+**NOTE** (Travis Fischer): this is a custom fork of [microbundle](https://github.com/developit/microbundle) which focuses on React for [create-react-library](https://github.com/transitive-bullshit/create-react-library) which adds a few nice-to-have features:
 
+- Changes the default `jsx` option to `React.createElement`
 - `rollup-plugin-named-directory` - more convenient imports for react components
 - `rollup-plugin-smart-asset` - smart bundling of imported image assets
 - `@babel/plugin-proposal-decorators` - add support for legacy decorators - very convenient for [mobx](https://mobx.js.org)
-- custom `rollup-plugin-alias` entries - these are the only customization specific to [react-saasify](https://github.com/saasify-sh/saasify/tree/master/packages/react-saasify)
+- `@babel/plugin-proposal-optional-chaining` - adds `?.` syntax support
 
 ---
 
@@ -34,18 +35,18 @@
 
 ### Download
 
-`npm i -D microbundle`
+`npm i -D microbundle-crl`
 
 ### Set up your `package.json`
 
 ```js
 {
-  "source": "src/foo.js",         // Your source file (same as 1st arg to microbundle)
+  "source": "src/foo.js",       // Your source file (same as 1st arg to microbundle)
   "main": "dist/foo.js",        // output path for CommonJS/Node
   "module": "dist/foo.mjs",     // output path for JS Modules
   "unpkg": "dist/foo.umd.js",   // optional, for unpkg.com
   "scripts": {
-    "build": "microbundle",       // uses "source" and "main" as input and output paths by default
+    "build": "microbundle",     // uses "source" and "main" as input and output paths by default
     "dev": "microbundle watch"
   }
 }

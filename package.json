@@ -1,5 +1,5 @@
 {
-	"name": "@saasify/microbundle",
+	"name": "microbundle-crl",
 	"version": "0.13.7",
 	"description": "Zero-configuration bundler for tiny JS libs, powered by Rollup.",
 	"main": "dist/microbundle.js",

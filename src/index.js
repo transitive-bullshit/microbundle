@@ -403,21 +403,6 @@ function createConfig(options, entry, format, writeMeta) {
 		? parseMappingArgumentAlias(options.alias)
 		: [];
 
-	moduleAliases.push({
-		find: /^assets\/(.*)$/,
-		replacement: `${resolve(options.cwd, 'src', 'assets')}/$1`,
-	});
-
-	moduleAliases.push({
-		find: /^lib\/(.*)$/,
-		replacement: `${resolve(options.cwd, 'src', 'lib')}/$1`,
-	});
-
-	moduleAliases.push({
-		find: /^store\/(.*)$/,
-		replacement: `${resolve(options.cwd, 'src', 'store')}/$1`,
-	});
-
 	const peerDeps = Object.keys(pkg.peerDependencies || {});
 	if (options.external === 'none') {
 		// bundle everything (external=[])
@@ -618,7 +603,7 @@ function createConfig(options, entry, format, writeMeta) {
 							modern,
 							compress: options.compress !== false,
 							targets: options.target === 'node' ? { node: '8' } : undefined,
-							pragma: options.jsx || 'h',
+							pragma: options.jsx || 'React.createElement',
 							pragmaFrag: options.jsxFragment || 'Fragment',
 							typescript: !!useTypescript,
 						},

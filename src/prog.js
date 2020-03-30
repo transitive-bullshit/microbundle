@@ -39,10 +39,7 @@ export default handler => {
 		.option('--sourcemap', 'Generate source map', true)
 		.example("microbundle --no-sourcemap # don't generate sourcemaps")
 		.option('--raw', 'Show raw byte size', false)
-		.option(
-			'--jsx',
-			'A custom JSX pragma like React.createElement (default: h)',
-		)
+		.option('--jsx', 'A custom JSX pragma (default React.createElement)')
 		.option('--tsconfig', 'Specify the path to a custom tsconfig.json')
 		.example('microbundle build --tsconfig tsconfig.build.json');
 
