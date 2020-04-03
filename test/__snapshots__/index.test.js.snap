@@ -423,7 +423,7 @@ Build \\"basicCss\\" to dist:
 
 exports[`fixtures build basic-css with microbundle 2`] = `7`;
 
-exports[`fixtures build basic-css with microbundle 3`] = `"._rHGVB{display:-webkit-box;display:flex;color:red;background:#00f}"`;
+exports[`fixtures build basic-css with microbundle 3`] = `"._rHGVB{display:flex;color:red;background:#00f}"`;
 
 exports[`fixtures build basic-css with microbundle 4`] = `
 "export default function(){var e=document.createElement(\\"div\\");return e.className=\\"testing\\",e}
@@ -1073,7 +1073,7 @@ Build \\"cssModulesFalse\\" to dist:
 exports[`fixtures build css-modules--false with microbundle 2`] = `4`;
 
 exports[`fixtures build css-modules--false with microbundle 3`] = `
-"body{display:-webkit-box;display:flex;color:red;background:#00f}.test_class_that_shouldnt_be_scoped{background-color:#00f}
+"body{display:flex;color:red;background:#00f}.test_class_that_shouldnt_be_scoped{background-color:#00f}
 .not_scoped_class{color:pink}"
 `;
 
@@ -1122,7 +1122,7 @@ Build \\"cssModulesNull\\" to dist:
 exports[`fixtures build css-modules--null with microbundle 2`] = `4`;
 
 exports[`fixtures build css-modules--null with microbundle 3`] = `
-"body{display:-webkit-box;display:flex;color:red;background:#00f}._2Dgv6{background-color:#00f}
+"body{display:flex;color:red;background:#00f}._2Dgv6{background-color:#00f}
 ._2kWDE{color:pink}"
 `;
 
@@ -1171,7 +1171,7 @@ Build \\"cssModulesString\\" to dist:
 exports[`fixtures build css-modules--string with microbundle 2`] = `4`;
 
 exports[`fixtures build css-modules--string with microbundle 3`] = `
-"body{display:-webkit-box;display:flex;color:red;background:#00f}._contains_this_81567d0efc15a456670452d3277e1a68{background-color:#00f}
+"body{display:flex;color:red;background:#00f}._contains_this_81567d0efc15a456670452d3277e1a68{background-color:#00f}
 ._contains_this_0a8c24df242c2cd708036873307aea94{color:pink}"
 `;
 
@@ -1220,7 +1220,7 @@ Build \\"cssModulesTrue\\" to dist:
 exports[`fixtures build css-modules--true with microbundle 2`] = `4`;
 
 exports[`fixtures build css-modules--true with microbundle 3`] = `
-"body{display:-webkit-box;display:flex;color:red;background:#00f}._1E6DU{background-color:#00f}
+"body{display:flex;color:red;background:#00f}._1E6DU{background-color:#00f}
 ._2kWDE{color:pink}"
 `;
 
@@ -1542,30 +1542,30 @@ jsx
 
 
 Build \\"jsx\\" to dist:
-262 B: jsx.js.gz
-209 B: jsx.js.br
-263 B: jsx.esm.js.gz
-212 B: jsx.esm.js.br
-335 B: jsx.umd.js.gz
-278 B: jsx.umd.js.br"
+193 B: jsx.js.gz
+147 B: jsx.js.br
+197 B: jsx.esm.js.gz
+160 B: jsx.esm.js.br
+277 B: jsx.umd.js.gz
+228 B: jsx.umd.js.br"
 `;
 
 exports[`fixtures build jsx with microbundle 2`] = `6`;
 
 exports[`fixtures build jsx with microbundle 3`] = `
-"var n=function(n,r){for(var e=arguments.length,t=new Array(e>2?e-2:0),l=2;l<e;l++)t[l-2]=arguments[l];return{tag:n,props:r,children:t}},r=function(n){return n.children},e=function(){function e(){}return e.prototype.render=function(){return n(\\"div\\",{id:\\"app\\"},n(\\"h1\\",null,\\"Hello, World!\\"),n(\\"p\\",null,\\"A JSX demo.\\"),n(r,null,n(\\"p\\",null,\\"Test fragment\\")))},e}();export default e;
+"var e=function(e){return e.children},t=function(){function t(){}return t.prototype.render=function(){return React.createElement(\\"div\\",{id:\\"app\\"},React.createElement(\\"h1\\",null,\\"Hello, World!\\"),React.createElement(\\"p\\",null,\\"A JSX demo.\\"),React.createElement(e,null,React.createElement(\\"p\\",null,\\"Test fragment\\")))},t}();export default t;
 //# sourceMappingURL=jsx.esm.js.map
 "
 `;
 
 exports[`fixtures build jsx with microbundle 4`] = `
-"var n=function(n,r){for(var e=arguments.length,t=new Array(e>2?e-2:0),l=2;l<e;l++)t[l-2]=arguments[l];return{tag:n,props:r,children:t}},r=function(n){return n.children};module.exports=function(){function e(){}return e.prototype.render=function(){return n(\\"div\\",{id:\\"app\\"},n(\\"h1\\",null,\\"Hello, World!\\"),n(\\"p\\",null,\\"A JSX demo.\\"),n(r,null,n(\\"p\\",null,\\"Test fragment\\")))},e}();
+"var e=function(e){return e.children};module.exports=function(){function t(){}return t.prototype.render=function(){return React.createElement(\\"div\\",{id:\\"app\\"},React.createElement(\\"h1\\",null,\\"Hello, World!\\"),React.createElement(\\"p\\",null,\\"A JSX demo.\\"),React.createElement(e,null,React.createElement(\\"p\\",null,\\"Test fragment\\")))},t}();
 //# sourceMappingURL=jsx.js.map
 "
 `;
 
 exports[`fixtures build jsx with microbundle 5`] = `
-"!function(n,e){\\"object\\"==typeof exports&&\\"undefined\\"!=typeof module?module.exports=e():\\"function\\"==typeof define&&define.amd?define(e):(n=n||self).jsx=e()}(this,function(){var n=function(n,e){for(var t=arguments.length,r=new Array(t>2?t-2:0),o=2;o<t;o++)r[o-2]=arguments[o];return{tag:n,props:e,children:r}},e=function(n){return n.children};return function(){function t(){}return t.prototype.render=function(){return n(\\"div\\",{id:\\"app\\"},n(\\"h1\\",null,\\"Hello, World!\\"),n(\\"p\\",null,\\"A JSX demo.\\"),n(e,null,n(\\"p\\",null,\\"Test fragment\\")))},t}()});
+"!function(e,t){\\"object\\"==typeof exports&&\\"undefined\\"!=typeof module?module.exports=t():\\"function\\"==typeof define&&define.amd?define(t):(e=e||self).jsx=t()}(this,function(){var e=function(e){return e.children};return function(){function t(){}return t.prototype.render=function(){return React.createElement(\\"div\\",{id:\\"app\\"},React.createElement(\\"h1\\",null,\\"Hello, World!\\"),React.createElement(\\"p\\",null,\\"A JSX demo.\\"),React.createElement(e,null,React.createElement(\\"p\\",null,\\"Test fragment\\")))},t}()});
 //# sourceMappingURL=jsx.umd.js.map
 "
 `;
