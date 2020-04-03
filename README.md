@@ -1,7 +1,6 @@
 **NOTE** (Travis Fischer): this is a custom fork of [microbundle](https://github.com/developit/microbundle) which focuses on React for [create-react-library](https://github.com/transitive-bullshit/create-react-library) which adds a few nice-to-have features:
 
 - Changes the default `jsx` option to `React.createElement`
-- `rollup-plugin-named-directory` - more convenient imports for react components
 - `rollup-plugin-smart-asset` - smart bundling of imported image assets
 - `@babel/plugin-proposal-decorators` - add support for legacy decorators - very convenient for [mobx](https://mobx.js.org)
 - `@babel/plugin-proposal-optional-chaining` - adds `?.` syntax support
@@ -41,12 +40,21 @@
 
 ```js
 {
+<<<<<<< HEAD
   "source": "src/foo.js",       // Your source file (same as 1st arg to microbundle)
   "main": "dist/foo.js",        // output path for CommonJS/Node
   "module": "dist/foo.mjs",     // output path for JS Modules
   "unpkg": "dist/foo.umd.js",   // optional, for unpkg.com
   "scripts": {
     "build": "microbundle",     // uses "source" and "main" as input and output paths by default
+=======
+  "source": "src/foo.js",          // Your source file (same as 1st arg to microbundle)
+  "main": "dist/foo.js",           // output path for CommonJS/Node
+  "module": "dist/foo.module.js",  // output path for JS Modules
+  "unpkg": "dist/foo.umd.js",      // optional, for unpkg.com
+  "scripts": {
+    "build": "microbundle",        // uses "source" and "main" as input and output paths by default
+>>>>>>> upstream/master
     "dev": "microbundle watch"
   }
 }
@@ -80,8 +88,8 @@ This is enabled by default - all you have to do is add the field to your `packag
 
 ```js
 {
-  "main": "dist/foo.umd.js",        // legacy UMD bundle (for Node & CDN's)
-  "module": "dist/foo.modern.mjs",  // modern ES2017 bundle
+  "main": "dist/foo.umd.js",              // legacy UMD bundle (for Node & CDN's)
+  "module": "dist/foo.modern.module.js",  // modern ES2017 bundle
   "scripts": {
     "build": "microbundle src/foo.js -f modern,umd"
   }
@@ -106,6 +114,26 @@ Acts just like `microbundle build`, but watches your source files and rebuilds o
 
 Just point the input to a `.ts` file through either the cli or the `source` key in your `package.json` and you’re done.
 
+### Using CSS Modules
+
+By default any css file imported as `.module.css`, will be treated as a css-module. If you wish to treat all .css
+imports as a module, specify the cli flag `--css-modules true`. If you wish to disable all css-module behaviours set the
+flag to `false`.
+
+The default scope name when css-modules is turned on will be, in watch mode `_[name]__[local]__[hash:base64:5]` and when
+you build `_[hash:base64:5]`. This can be overriden by specifying the flag, eg
+`--css-modules "_something_[hash:base64:7]"`. _Note:_ by setting this, it will be treated as a true, and thus, all .css
+imports will be scoped.
+
+| flag  | import                         |   is css module?   |
+| ----- | ------------------------------ | :----------------: |
+| null  | import './my-file.css';        |        :x:         |
+| null  | import './my-file.module.css'; | :white_check_mark: |
+| false | import './my-file.css';        |        :x:         |
+| false | import './my-file.module.css'; |        :x:         |
+| true  | import './my-file.css';        | :white_check_mark: |
+| true  | import './my-file.module.css'; | :white_check_mark: |
+
 ### Specifying builds in `package.json`
 
 You can specify output builds in a `package.json` as follows:
@@ -120,7 +148,7 @@ You can specify output builds in a `package.json` as follows:
 
 ### Mangling Properties
 
-Libraries often wish to rename internal object properties or class members to smaller names - transforming `this._internalIdValue` to `this._i`. Microbundle doesn't currently do this by default, but it can be enabled by adding a "mangle" property to your package.json, with a pattern to control when properties should be mangled. To mangle all property names beginning an underscore, add the following:
+To achieve the smallest possible bundle size, libraries often wish to rename internal object properties or class members to smaller names - transforming `this._internalIdValue` to `this._i`. Microbundle doesn't do this by default, however it can be enabled by createing a `mangle.json` file (or a `"mangle"` property in your package.json). Within that file, you can specify a regular expression pattern to control which properties should be mangled. For example: to mangle all property names beginning an underscore:
 
 ```json
 {
@@ -129,6 +157,8 @@ Libraries often wish to rename internal object properties or class members to sm
 	}
 }
 ```
+
+It's also possible to configure repeatable short names for each mangled property, so that every build of your library has the same output. **See the wiki for a [complete guide to property mangling in Microbundle](https://github.com/developit/microbundle/wiki/mangle.json).**
 
 ### All CLI Options
 
@@ -163,6 +193,7 @@ Options
 	--raw            Show raw byte size  (default false)
 	--jsx            A custom JSX pragma like React.createElement (default: h)
 	--tsconfig       Specify the path to a custom tsconfig.json
+	--css-modules    Configures .css to be treated as modules (default: null)
 	-h, --help       Displays this message
 
 Examples
@@ -186,6 +217,7 @@ Here's what's coming up for Microbundle:
 - [Preact](https://github.com/preactjs/preact) Fast 3kB React alternative with the same modern API. Components & Virtual DOM.
 - [Stockroom](https://github.com/developit/stockroom) Offload your store management to a worker easily.
 - [Microenvi](https://github.com/fwilkerson/microenvi) Bundle, serve, and hot reload with one command.
+- [Theme UI](https://github.com/system-ui/theme-ui) Build consistent, themeable React apps based on constraint-based design principles.
 - [react-recomponent](https://github.com/philipp-spiess/react-recomponent) Reason-style reducer components for React using ES6 classes.
 - [brazilian-utils](https://github.com/brazilian-utils/brazilian-utils) Utils library for specific Brazilian businesses.
 - [react-hooks-lib](https://github.com/beizhedenglong/react-hooks-lib) A set of reusable react hooks.
