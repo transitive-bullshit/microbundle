@@ -17,7 +17,7 @@
     "format": "prettier --write \"{*,{src,test}/**/*}.+(js|css)\"",
     "release": "npm run -s prepare && npm test && git commit -am $npm_package_version && git tag $npm_package_version && git push && git push --tags && npm publish"
   },
-  "repository": "developit/microbundle",
+  "repository": "transitive-bullshit/microbundle",
   "prettier": {
     "singleQuote": true,
     "trailingComma": "all",
