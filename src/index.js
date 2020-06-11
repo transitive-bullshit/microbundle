@@ -18,6 +18,7 @@ import brotliSize from 'brotli-size';
 import prettyBytes from 'pretty-bytes';
 import typescript from 'rollup-plugin-typescript2';
 import json from '@rollup/plugin-json';
+import svgr from '@svgr/rollup';
 import smartAsset from 'rollup-plugin-smart-asset';
 import logError from './log-error';
 import { readFile, isDir, isFile, stdout, stderr, isTruthy } from './utils';
@@ -553,6 +554,7 @@ function createConfig(options, entry, format, writeMeta) {
 						keepName: true,
 						keepImport: true,
 					}),
+					svgr(),
 					{
 						// We have to remove shebang so it doesn't end up in the middle of the code somewhere
 						transform: code => ({
