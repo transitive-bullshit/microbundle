@@ -527,7 +527,7 @@ function createConfig(options, entry, format, writeMeta) {
 									preset: 'default',
 								}),
 							postcssCopy({
-								dest: options.output,
+								dest: dirname(options.output),
 								template: 'assets/[hash].[ext][query]',
 							}),
 						].filter(Boolean),
