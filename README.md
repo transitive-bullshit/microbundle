@@ -40,22 +40,14 @@
 
 ```js
 {
-<<<<<<< HEAD
-  "source": "src/foo.js",       // Your source file (same as 1st arg to microbundle)
-  "main": "dist/foo.js",        // output path for CommonJS/Node
-  "module": "dist/foo.mjs",     // output path for JS Modules
-  "unpkg": "dist/foo.umd.js",   // optional, for unpkg.com
+  "name": "foo",                   // your package name
+  "source": "src/foo.js",          // your source code
+  "main": "dist/foo.js",           // where to generate the CommonJS/Node bundle
+  "module": "dist/foo.module.js",  // where to generate the ESM bundle
+  "unpkg": "dist/foo.umd.js",      // where to generate the UMD bundle (also aliased as "umd:main")
   "scripts": {
-    "build": "microbundle",     // uses "source" and "main" as input and output paths by default
-=======
-  "source": "src/foo.js",          // Your source file (same as 1st arg to microbundle)
-  "main": "dist/foo.js",           // output path for CommonJS/Node
-  "module": "dist/foo.module.js",  // output path for JS Modules
-  "unpkg": "dist/foo.umd.js",      // optional, for unpkg.com
-  "scripts": {
-    "build": "microbundle",        // uses "source" and "main" as input and output paths by default
->>>>>>> upstream/master
-    "dev": "microbundle watch"
+    "build": "microbundle",        // compiles "source" to "main"/"module"/"unpkg"
+    "dev": "microbundle watch"     // re-build when source files change
   }
 }
 ```
