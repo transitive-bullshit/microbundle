@@ -13,6 +13,7 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 import alias from '@rollup/plugin-alias';
 import postcss from 'rollup-plugin-postcss';
+import postcssCopy from 'postcss-copy';
 import gzipSize from 'gzip-size';
 import brotliSize from 'brotli-size';
 import prettyBytes from 'pretty-bytes';
@@ -525,6 +526,10 @@ function createConfig(options, entry, format, writeMeta) {
 								cssnano({
 									preset: 'default',
 								}),
+							postcssCopy({
+								dest: dirname(options.output),
+								template: 'assets/[hash].[ext][query]',
+							}),
 						].filter(Boolean),
 						autoModules: shouldCssModules(options),
 						modules: cssModulesConfig(options),
