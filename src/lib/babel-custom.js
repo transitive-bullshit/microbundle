@@ -1,5 +1,4 @@
-import { createConfigItem } from '@babel/core';
-import babelPlugin from 'rollup-plugin-babel';
+import { custom } from 'rollup-plugin-babel';
 import merge from 'lodash.merge';
 import { isTruthy } from '../utils';
 
@@ -7,7 +6,7 @@ const ESMODULES_TARGET = {
 	esmodules: true,
 };
 
-const mergeConfigItems = (type, ...configItemsToMerge) => {
+const mergeConfigItems = (babel, type, ...configItemsToMerge) => {
 	const mergedItems = [];
 
 	configItemsToMerge.forEach(configItemToMerge => {
@@ -21,7 +20,7 @@ const mergeConfigItems = (type, ...configItemsToMerge) => {
 				return;
 			}
 
-			mergedItems[itemToMergeWithIndex] = createConfigItem(
+			mergedItems[itemToMergeWithIndex] = babel.createConfigItem(
 				[
 					mergedItems[itemToMergeWithIndex].file.resolved,
 					merge(mergedItems[itemToMergeWithIndex].options, item.options),
@@ -36,16 +35,18 @@ const mergeConfigItems = (type, ...configItemsToMerge) => {
 	return mergedItems;
 };
 
-const createConfigItems = (type, items) => {
-	return items.map(({ name, ...options }) => {
-		return createConfigItem([require.resolve(name), options], { type });
+const createConfigItems = (babel, type, items) => {
+	return items.map(item => {
+		let { name, value, ...options } = item;
+		value = value || [require.resolve(name), options];
+		return babel.createConfigItem(value, { type });
 	});
 };
 
 const presetEnvRegex = RegExp(/@babel\/(preset-)?env/);
 
 export default () => {
-	return babelPlugin.custom(babelCore => {
+	return custom(babelCore => {
 		return {
 			// Passed the plugin options.
 			options({ custom: customOptions, ...pluginOptions }) {
@@ -60,6 +61,7 @@ export default () => {
 
 			config(config, { customOptions }) {
 				const defaultPlugins = createConfigItems(
+					babelCore,
 					'plugin',
 					[
 						{
@@ -112,7 +114,7 @@ export default () => {
 
 				if (envIdx !== -1) {
 					const preset = babelOptions.presets[envIdx];
-					babelOptions.presets[envIdx] = createConfigItem(
+					babelOptions.presets[envIdx] = babelCore.createConfigItem(
 						[
 							environmentPreset,
 							Object.assign(
@@ -139,7 +141,7 @@ export default () => {
 						},
 					);
 				} else {
-					babelOptions.presets = createConfigItems('preset', [
+					babelOptions.presets = createConfigItems(babelCore, 'preset', [
 						{
 							name: environmentPreset,
 							targets: customOptions.modern
@@ -158,6 +160,7 @@ export default () => {
 
 				// Merge babelrc & our plugins together
 				babelOptions.plugins = mergeConfigItems(
+					babelCore,
 					'plugin',
 					defaultPlugins,
 					babelOptions.plugins || [],
