@@ -1,3 +1,5 @@
+**NOTE** (Tomyail): this is a custom fork of [microbundle-crl](https://github.com/transitive-bullshit/microbundle) but merged latest [microbundle](https://github.com/developit/microbundle)
+
 **NOTE** (Travis Fischer): this is a custom fork of [microbundle](https://github.com/developit/microbundle) which focuses on React for [create-react-library](https://github.com/transitive-bullshit/create-react-library) which adds a few nice-to-have features:
 
 - Changes the default `jsx` option to `React.createElement`
