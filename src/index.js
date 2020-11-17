@@ -19,7 +19,7 @@ import postcss from 'rollup-plugin-postcss';
 import typescript from 'rollup-plugin-typescript2';
 import json from '@rollup/plugin-json';
 // import svgr from '@svgr/rollup';
-import smartAsset from 'rollup-plugin-smart-asset';
+import smartAsset from '@tomyail/rollup-plugin-smart-asset';
 import logError from './log-error';
 import { isDir, isFile, stdout, isTruthy, removeScope } from './utils';
 import { getSizeInfo } from './lib/compressed-size';
