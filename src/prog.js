@@ -1,5 +1,5 @@
 import sade from 'sade';
-let { version } = require('../package');
+let { version } = require('../package.json');
 
 const toArray = val => (Array.isArray(val) ? val : val == null ? [] : [val]);
 
@@ -10,9 +10,19 @@ export default handler => {
 
 	const cmd = type => (str, opts) => {
 		opts.watch = opts.watch || type === 'watch';
-		opts.compress =
-			opts.compress != null ? opts.compress : opts.target !== 'node';
+
 		opts.entries = toArray(str || opts.entry).concat(opts._);
+
+		if (opts.compress != null) {
+			// Convert `--compress true/false/1/0` to booleans:
+			if (typeof opts.compress !== 'boolean') {
+				opts.compress = opts.compress !== 'false' && opts.compress !== '0';
+			}
+		} else {
+			// the default compress value is `true` for web, `false` for Node:
+			opts.compress = opts.target !== 'node';
+		}
+
 		handler(opts);
 	};
 
@@ -22,8 +32,17 @@ export default handler => {
 		.version(version)
 		.option('--entry, -i', 'Entry module(s)')
 		.option('--output, -o', 'Directory to place build files into')
-		.option('--format, -f', 'Only build specified formats', DEFAULT_FORMATS)
+		.option(
+			'--format, -f',
+			`Only build specified formats (any of ${DEFAULT_FORMATS} or iife)`,
+			DEFAULT_FORMATS,
+		)
 		.option('--watch, -w', 'Rebuilds on any change', false)
+		.option(
+			'--pkg-main',
+			'Outputs files analog to package.json main entries',
+			true,
+		)
 		.option('--target', 'Specify your target environment (node or web)', 'web')
 		.option('--external', `Specify external dependencies, or 'none'`)
 		.option('--globals', `Specify globals dependencies, or 'none'`)
