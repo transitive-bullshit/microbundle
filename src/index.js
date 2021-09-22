@@ -679,14 +679,7 @@ function createConfig(options, entry, format, writeMeta) {
 			},
 			format: modern ? 'es' : format,
 			name: options.name,
-			file: resolve(
-				options.cwd,
-				{
-					modern: modernMain,
-					es: moduleMain,
-					umd: umdMain,
-				}[format] || cjsMain,
-			),
+      			dir:options.cwd+'/dist'
 		},
 	};
 
